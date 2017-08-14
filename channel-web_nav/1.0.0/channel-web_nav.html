@@ -1,0 +1,35 @@
+<style type="text/css">
+.elenav_box{ border-bottom: 2px solid #d7000f;}
+.nav_all{ width: 1200px; margin:0 auto;}
+.nav_all h2.shopClass{ height: 40px; width: 185px; background:#d7000f;line-height: 40px; color: #fff; font-family: 'Microsoft YaHei'; font-weight: 400; font-size: 15px; padding-left: 15px;}
+.ele_fl{  float: left; width:1000px;  height:40px;  overflow:hidden;}
+.nav_main{*position: relative;}
+.nav_main li{ position: relative; float: left; height: 40px; line-height: 40px; padding: 0 16px; color: #000; font-size: 15px; font-family: 'Microsoft YaHei';}
+.nav_main li a:hover{text-decoration: none; color: #d7000f;}
+.nav_hot{ position: absolute; width: 29px; height: 14px; overflow: hidden; top: 0; right: 0;}
+.w1000 .nav_all{ width:1000px;}
+.w1000 .ele_fl{ width:800px;}
+.w1000 .nav_main li{ padding: 0 9px;}
+</style>
+<#if (appliancenav.children.nav)??>
+    <#assign navbox = (appliancenav.children.nav)>
+    <div class="elenav_box">
+        <div class="nav_all clearfix">
+            <h2 class="shopClass ele_fl">全部商品分类</h2>
+            <#if (navbox.linkList)?? && (navbox.linkList)?size &gt;0 >
+                <ul class="nav_main ele_fl clearfix edit-mode" modelType="${(navbox.modelType)!}"  modelId="${(navbox.modelId)!}">
+                    <#list navbox.linkList as navlist>
+                        <li>
+                            <a <#if (navlist.href)??>href="${(navlist.href)!}" target="_blank" <#else>href="javascript:;"</#if> data-code="${(navbox.modelId)!}-${(navlist_index)+1}">${(navlist.textOtherAttr.elemenlName)!}</a>
+							<#if (navlist.textOtherAttr.extend)??>
+								<span class="nav_hot"><img src="${(navlist.textOtherAttr.extend)!}"/></span>
+							</#if>
+                        </li>
+                    </#list>
+                </ul>
+            </#if>
+        </div>
+    </div>
+</#if>
+
+
